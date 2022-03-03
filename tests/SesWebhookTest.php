@@ -1,0 +1,88 @@
+<?php
+declare(strict_types=1);
+
+namespace Ankurk91\SesWebhooks\Tests;
+
+use Ankurk91\SesWebhooks\Tests\Stubs\TestEventJob;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Event;
+use Spatie\WebhookClient\Models\WebhookCall;
+
+class SesWebhookTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        config()->set('ses-webhooks.verify_signature', false);
+        config()->set('ses-webhooks.jobs', [
+            'bounce' => TestEventJob::class,
+            'click' => 'UnknownJob::class',
+        ]);
+    }
+
+    public function test_it_can_processes_webhook_successfully()
+    {
+        Event::fake();
+        Bus::fake(TestEventJob::class);
+
+        $messageFactory = new SNSMessageFactory();
+        $payload = $messageFactory->getNotificationPayload([
+            'eventType' => 'Bounce',
+        ]);
+
+        $this->postJson('/webhooks/ses', $payload)
+            ->assertSuccessful();
+
+        $this->assertDatabaseCount('webhook_calls', 1);
+
+        Bus::assertDispatched(TestEventJob::class, function ($job) {
+            $this->assertInstanceOf(WebhookCall::class, $job->webhookCall);
+
+            return true;
+        });
+
+        Event::assertDispatched('ses-webhooks::bounce', function ($event, $eventPayload) {
+            $this->assertInstanceOf(WebhookCall::class, $eventPayload);
+
+            return true;
+        });
+    }
+
+    public function test_it_fails_when_invalid_job_class_configured()
+    {
+        Event::fake();
+        $messageFactory = new SNSMessageFactory();
+        $payload = $messageFactory->getNotificationPayload([
+            'eventType' => 'Click',
+        ]);
+
+        $this->postJson('/webhooks/ses', $payload)
+            ->assertStatus(500);
+
+        Event::assertDispatched('ses-webhooks::click', function ($event, $eventPayload) {
+            $this->assertInstanceOf(WebhookCall::class, $eventPayload);
+
+            return true;
+        });
+    }
+
+    public function test_it_process_webhook_once()
+    {
+        $messageFactory = new SNSMessageFactory();
+        $payload = $messageFactory->getNotificationPayload([
+            'eventType' => 'Bounce',
+        ]);
+
+        $this->postJson('/webhooks/ses', $payload)
+            ->assertSuccessful();
+
+        $this->postJson('/webhooks/ses', $payload)
+            ->assertSuccessful();
+
+        $this->assertDatabaseCount('webhook_calls', 1);
+    }
+}

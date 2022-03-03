@@ -1,0 +1,60 @@
+{
+  "name": "ankurk91/laravel-ses-webhooks",
+  "description": "Handle AWS SES webhooks in Laravel",
+  "keywords": [
+    "laravel",
+    "sns",
+    "ses",
+    "aws",
+    "webhook"
+  ],
+  "homepage": "https://github.com/ankurk91/laravel-ses-webhooks",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ankurk91",
+      "homepage": "https://ankurk91.github.io",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "ext-openssl": "*",
+    "aws/aws-php-sns-message-validator": "^1.6",
+    "guzzlehttp/guzzle": "^7.3",
+    "illuminate/http": "^8.13 || ^9.1",
+    "illuminate/support": "^8.13 || ^9.1",
+    "spatie/laravel-webhook-client": "^3.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.24 || ^7.1",
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ankurk91\\SesWebhooks\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ankurk91\\SesWebhooks\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "preferred-install": "dist"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit --testdox --color=always",
+    "test:coverage": "vendor/bin/phpunit --testdox --color=always --coverage-clover=coverage.xml"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ankurk91\\SesWebhooks\\SesWebhooksServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
