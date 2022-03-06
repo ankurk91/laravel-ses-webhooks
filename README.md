@@ -152,6 +152,7 @@ If you discover any security issue, please email `pro.ankurk1[at]gmail[dot]com` 
 
 ### Useful Links
 
+* [Receiving Amazon SES notifications using Amazon SNS](https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-activity-using-notifications-sns.html)
 * [AWS SES event publishing](https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-using-event-publishing-setup.html)
 * [AWS SNS JSON format](https://docs.aws.amazon.com/sns/latest/dg/sns-message-and-json-formats.html)
 * [AWS SES Event format](https://docs.aws.amazon.com/ses/latest/dg/event-publishing-retrieving-sns-contents.html)

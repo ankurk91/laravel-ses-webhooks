@@ -11,4 +11,11 @@ class WebhookFailed extends Exception
     {
         return new static("Could not process webhook, the configured class `$jobClass` not found.");
     }
+
+    public function render()
+    {
+        return response()->json([
+            'message' => $this->getMessage()
+        ], 500);
+    }
 }

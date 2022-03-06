@@ -61,6 +61,7 @@ class SesWebhookTest extends TestCase
         ]);
 
         $this->postJson('/webhooks/ses', $payload)
+            ->assertSee('Could not process webhook, the configured class')
             ->assertStatus(500);
 
         Event::assertDispatched('ses-webhooks::click', function ($event, $eventPayload) {
@@ -70,7 +71,7 @@ class SesWebhookTest extends TestCase
         });
     }
 
-    public function test_it_process_webhook_once()
+    public function test_it_process_webhook_only_once()
     {
         $messageFactory = new SNSMessageFactory();
         $payload = $messageFactory->getNotificationPayload([
@@ -84,5 +85,24 @@ class SesWebhookTest extends TestCase
             ->assertSuccessful();
 
         $this->assertDatabaseCount('webhook_calls', 1);
+    }
+
+    public function test_it_can_skip_processing_on_invalid_message_json()
+    {
+        Event::fake();
+        Bus::fake(TestEventJob::class);
+
+        $messageFactory = new SNSMessageFactory();
+        $payload = $messageFactory->getNotificationPayload([
+            'eventType' => 'Bounce',
+        ], [
+            'Message' => 'Invalid json text.'
+        ]);
+
+        $this->postJson('/webhooks/ses', $payload)
+            ->assertSuccessful();
+
+        Event::assertNotDispatched('ses-webhooks::bounce');
+        Bus::assertNotDispatched(TestEventJob::class);
     }
 }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Ankurk91\SesWebhooks;
 
-use Ankurk91\SESWebhooks\Exception\WebhookFailed;
+use Ankurk91\SesWebhooks\Exception\WebhookFailed;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use JsonException;
