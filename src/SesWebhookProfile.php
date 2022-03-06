@@ -12,8 +12,10 @@ class SesWebhookProfile implements WebhookProfile
     public function shouldProcess(Request $request): bool
     {
         $payload = Message::fromJsonString((string)$request->getContent());
+        $config = SesWebhookConfig::get();
 
         return SesWebhookCall::query()
+            ->where('name', $config->name)
             ->where('payload->MessageId', $payload['MessageId'])->doesntExist();
     }
 }
