@@ -31,7 +31,7 @@ class SesWebhookPruneTest extends TestCase
         return $webhook;
     }
 
-    public function test_it_prune_old_records()
+    public function test_it_can_prune_old_records()
     {
         $hours = config('ses-webhooks.prune_older_than_hours') + 1;
         $oldWebhook = $this->createWebhook(Date::now()->subHours($hours));

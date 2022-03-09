@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Ankurk91\SesWebhooks;
 
 use Aws\Sns\Message;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
@@ -30,7 +29,7 @@ class SesWebhookCall extends WebhookCall
         ]);
     }
 
-    public function prunable(): Builder
+    public function prunable()
     {
         $config = SesWebhookConfig::get();
         $hours = config('ses-webhooks.prune_older_than_hours', 30 * 24);
