@@ -83,20 +83,28 @@ class BounceEvent implements ShouldQueue
 
     public function handle()
     {
-        //todo 
+        $message = json_decode($this->webhookCall->payload['Message'], true, 512, JSON_THROW_ON_ERROR);
+        
+        if ($message['bounce']['bounceType'] !== 'Permanent') return;
+
+        foreach ($message['bounce']['bouncedRecipients'] as $recipient) {
+            //todo do something with $recipient['emailAddress']
+        }
     }
 }
 ```
 
-After having created your job you must register it at the `jobs` array in the `ses-webhooks.php` config file. The key
+After having created your job you must register it at the `jobs` array in the `config/ses-webhooks.php` config file. The key
 should be lowercase with spaces should be replaced by `_` and value should be the fully qualified classname.
 
 ```php
-// config/ses-webhooks.php
+<?php
 
- 'jobs' => [
-      'bounce' => \App\Jobs\SesWebhooks\BounceEvent::class,
- ],
+return [
+     'jobs' => [
+          'bounce' => \App\Jobs\SesWebhooks\BounceEvent::class,
+     ],
+];
 ```
 
 ### 2 - Handling webhook requests using events and listeners
@@ -107,7 +115,7 @@ event.
 
 The payload of the events will be the instance of WebhookCall that was created for the incoming request.
 
-Let's take a look at how you can listen for such an event. In the `EventServiceProvider` you can register listeners.
+You can listen for such an event by registering the listener in your `EventServiceProvider` class.
 
 ```php
 protected $listen = [
@@ -135,6 +143,34 @@ class SesBounce implements ShouldQueue
     }
 }
 ```
+
+## Pruning old webhooks (opt-in)
+
+You can schedule the artisan command to remove old webhooks from database like:
+
+```php
+<?php
+namespace App\Console;
+
+use Illuminate\Console\Scheduling\Schedule; 
+use Illuminate\Database\Console\PruneCommand;
+use Ankurk91\SesWebhooks\SesWebhookCall;
+
+class Kernel extends ConsoleKernel
+{
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command(PruneCommand::class, [
+            '--model' => [SesWebhookCall::class]
+        ])->daily()->description('Prune webhook_calls');
+    }
+    
+    //...
+}
+```
+
+By default, the package is configured to keep past `30` days records. You can adjust the duration
+in `./config/ses-webhooks.php` file.
 
 ### Changelog
 
