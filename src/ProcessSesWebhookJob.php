@@ -6,7 +6,6 @@ namespace Ankurk91\SesWebhooks;
 use Ankurk91\SesWebhooks\Exception\WebhookFailed;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use JsonException;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 
 class ProcessSesWebhookJob extends ProcessWebhookJob
@@ -17,21 +16,17 @@ class ProcessSesWebhookJob extends ProcessWebhookJob
             return;
         }
 
-        try {
-            $event = $this->getEventData();
-        } catch (JsonException $e) {
+        $message = $this->webhookCall->payload['Message'];
+
+        if (!Arr::get($message, 'eventType')) {
             return;
         }
 
-        if (!Arr::get($event, 'eventType')) {
-            return;
-        }
+        $eventKey = $this->createEventKey($message['eventType']);
 
-        $eventKey = $this->createEventKey($event['eventType']);
+        event("ses-webhooks::$eventKey", $this->webhookCall);
 
-        event("ses-webhooks::{$eventKey}", $this->webhookCall);
-
-        $jobClass = config("ses-webhooks.jobs.{$eventKey}");
+        $jobClass = config("ses-webhooks.jobs.$eventKey");
 
         if (empty($jobClass)) {
             return;
@@ -42,17 +37,6 @@ class ProcessSesWebhookJob extends ProcessWebhookJob
         }
 
         dispatch(new $jobClass($this->webhookCall));
-    }
-
-    /**
-     * Parse message from payload.
-     *
-     * @return array
-     * @throws JsonException
-     */
-    protected function getEventData(): array
-    {
-        return json_decode($this->webhookCall->payload['Message'], true, 512, JSON_THROW_ON_ERROR);
     }
 
     protected function createEventKey(string $eventType): string

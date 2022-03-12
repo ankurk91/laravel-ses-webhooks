@@ -89,6 +89,7 @@ namespace App\Jobs\Webhooks\SES;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Arr;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 class BounceHandler implements ShouldQueue
@@ -102,9 +103,9 @@ class BounceHandler implements ShouldQueue
 
     public function handle()
     {
-        $message = json_decode($this->webhookCall->payload['Message'], true, 512, JSON_THROW_ON_ERROR);
+        $message = $this->webhookCall->payload['Message'];
         
-        if ($message['bounce']['bounceType'] !== 'Permanent') return;
+        if (Arr::get($message, 'bounce.bounceType') !== 'Permanent') return;
 
         foreach ($message['bounce']['bouncedRecipients'] as $recipient) {
             //todo do something with $recipient['emailAddress']
@@ -158,6 +159,7 @@ class BounceListener implements ShouldQueue
 {
     public function handle(WebhookCall $webhookCall)
     {
+        $message = $webhookCall->payload['Message'];
         // todo
     }
 }

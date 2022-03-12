@@ -88,7 +88,7 @@ class SNSMessageFactory
             'MessageId' => '22b80b92-fdea-4c2c-8f9d-bdfb0c7bf324',
             'TopicArn' => 'arn:aws:sns:us-west-2:123456789012:MyTopic',
             'Subject' => 'My First Message',
-            'Message' => "{$payload}",
+            'Message' => "$payload",
             'Timestamp' => now()->toDateTimeString(),
             'SignatureVersion' => '1',
             'Token' => '2336412f37...',
