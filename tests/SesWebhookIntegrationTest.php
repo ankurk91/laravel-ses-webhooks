@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
 use Spatie\WebhookClient\Models\WebhookCall;
 
-class SesWebhookTest extends TestCase
+class SesWebhookIntegrationTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -62,6 +62,7 @@ class SesWebhookTest extends TestCase
 
         $this->postJson('/webhooks/ses', $payload)
             ->assertSee('Could not process webhook, the configured class')
+            ->assertSee('UnknownJob::class')
             ->assertStatus(500);
 
         Event::assertDispatched('ses-webhooks::click', function ($event, $eventPayload) {
