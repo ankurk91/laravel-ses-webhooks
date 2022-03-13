@@ -108,7 +108,7 @@ class BounceHandler implements ShouldQueue
         if (Arr::get($message, 'bounce.bounceType') !== 'Permanent') return;
 
         foreach ($message['bounce']['bouncedRecipients'] as $recipient) {
-            //todo do something with $recipient['emailAddress']
+            // todo do something with $recipient['emailAddress']
         }
     }
 }
@@ -139,8 +139,8 @@ You can listen for such event by registering the listener in your `EventServiceP
 
 ```php
 protected $listen = [
-    'ses-webhooks::bounce' => [
-        App\Listeners\SES\BounceListener::class,
+    'ses-webhooks::complaint' => [
+        App\Listeners\SES\ComplaintListener::class,
     ],
 ];
 ```
@@ -155,12 +155,15 @@ namespace App\Listeners\SES;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Spatie\WebhookClient\Models\WebhookCall;
 
-class BounceListener implements ShouldQueue
+class ComplaintListener implements ShouldQueue
 {
     public function handle(WebhookCall $webhookCall)
     {
         $message = $webhookCall->payload['Message'];
-        // todo
+        
+        foreach ($message['complaint']['complainedRecipients'] as $recipient) {
+            // todo do something with $recipient['emailAddress']
+        }
     }
 }
 ```
