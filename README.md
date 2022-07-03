@@ -75,12 +75,12 @@ protected $except = [
 
 ## Usage
 
-There are 2 way to handle incoming webhooks via this package.
+There are 2 ways to handle incoming webhooks via this package.
 
 ### 1 - Handling webhook requests using jobs
 
-If you want to do something when a specific event type comes in; you can define a job for that event. Here's an example
-of such job:
+If you want to do something when a specific event type comes in; you can define a job for that event. 
+Here's an example of such job:
 
 ```php
 <?php

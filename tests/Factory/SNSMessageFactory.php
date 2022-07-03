@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ankurk91\SesWebhooks\Tests;
+namespace Ankurk91\SesWebhooks\Tests\Factory;
 
 use Aws\Sns\Message;
 use Aws\Sns\MessageValidator;

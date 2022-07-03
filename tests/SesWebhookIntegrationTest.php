@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Ankurk91\SesWebhooks\Tests;
 
+use Ankurk91\SesWebhooks\Tests\Factory\SNSMessageFactory;
 use Ankurk91\SesWebhooks\Tests\Stubs\TestEventJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Bus;

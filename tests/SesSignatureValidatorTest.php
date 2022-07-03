@@ -5,6 +5,7 @@ namespace Ankurk91\SesWebhooks\Tests;
 
 use Ankurk91\SesWebhooks\SesSignatureValidator;
 use Ankurk91\SesWebhooks\SesWebhookConfig;
+use Ankurk91\SesWebhooks\Tests\Factory\SNSMessageFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Spatie\WebhookClient\WebhookConfig;
