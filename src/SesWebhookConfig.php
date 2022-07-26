@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Ankurk91\SesWebhooks;
 
+use Ankurk91\SesWebhooks\Jobs\ProcessSesWebhookJob;
 use Spatie\WebhookClient\WebhookConfig;
 
 class SesWebhookConfig

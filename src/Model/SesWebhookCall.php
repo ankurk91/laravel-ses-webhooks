@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Ankurk91\SesWebhooks;
+namespace Ankurk91\SesWebhooks\Model;
 
+use Ankurk91\SesWebhooks\SesWebhookConfig;
 use Aws\Sns\Message;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class SesWebhookCall extends WebhookCall
 
         return self::create([
             'name' => $config->name,
-            'url' => $request->fullUrl(),
+            'url' => $request->path(),
             'headers' => $headers,
             'payload' => $payload,
         ]);
@@ -48,7 +49,7 @@ class SesWebhookCall extends WebhookCall
     public function prunable()
     {
         $config = SesWebhookConfig::get();
-        $hours = config('ses-webhooks.prune_older_than_hours', 30 * 24);
+        $hours = config('ses-webhooks.prune_older_than_hours');
 
         return static::query()
             ->where('name', $config->name)

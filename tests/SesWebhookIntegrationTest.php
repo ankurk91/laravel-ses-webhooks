@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 namespace Ankurk91\SesWebhooks\Tests;
 
+use Ankurk91\SesWebhooks\Exception\WebhookFailed;
+use Ankurk91\SesWebhooks\Jobs\ProcessSesWebhookJob;
 use Ankurk91\SesWebhooks\Tests\Factory\SNSMessageFactory;
 use Ankurk91\SesWebhooks\Tests\Stubs\TestEventJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
 use Spatie\WebhookClient\Models\WebhookCall;
@@ -62,12 +65,16 @@ class SesWebhookIntegrationTest extends TestCase
         ]);
 
         $this->postJson('/webhooks/ses', $payload)
-            ->assertSee('Could not process webhook, the configured class')
-            ->assertSee('UnknownJob::class')
-            ->assertStatus(500);
+            ->assertSuccessful();
 
         Event::assertDispatched('ses-webhooks::click', function ($event, $eventPayload) {
             $this->assertInstanceOf(WebhookCall::class, $eventPayload);
+
+            return true;
+        });
+
+        Event::assertDispatched(JobFailed::class, function ($event) {
+            $this->assertInstanceOf(WebhookFailed::class, $event->exception);
 
             return true;
         });

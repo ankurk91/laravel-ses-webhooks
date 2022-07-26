@@ -7,7 +7,7 @@
 [![GH-Actions](https://github.com/ankurk91/laravel-ses-webhooks/workflows/tests/badge.svg)](https://github.com/ankurk91/laravel-ses-webhooks/actions)
 [![codecov](https://codecov.io/gh/ankurk91/laravel-ses-webhooks/branch/main/graph/badge.svg)](https://codecov.io/gh/ankurk91/laravel-ses-webhooks)
 
-Handle AWS [SES](https://aws.amazon.com/ses/) webhook in Laravel php framework.
+Handle AWS [SES](https://aws.amazon.com/ses/) webhooks in Laravel php framework.
 
 ## Installation
 
@@ -176,9 +176,9 @@ You can schedule the artisan command to remove old webhooks from database like:
 <?php
 namespace App\Console;
 
-use Illuminate\Console\Scheduling\Schedule; 
+use Ankurk91\SesWebhooks\Model\SesWebhookCall;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Console\PruneCommand;
-use Ankurk91\SesWebhooks\SesWebhookCall;
 
 class Kernel extends ConsoleKernel
 {

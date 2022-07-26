@@ -14,6 +14,9 @@ use Throwable;
 
 class SesSignatureValidator implements SignatureValidator
 {
+    /**
+     * @throws RequestException
+     */
     public function isValid(Request $request, WebhookConfig $config): bool
     {
         if (!config('ses-webhooks.verify_signature')) {

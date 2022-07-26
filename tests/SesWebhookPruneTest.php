@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Ankurk91\SesWebhooks\Tests;
 
-use Ankurk91\SesWebhooks\SesWebhookCall;
+use Ankurk91\SesWebhooks\Model\SesWebhookCall;
 use Ankurk91\SesWebhooks\SesWebhookConfig;
 use Illuminate\Database\Console\PruneCommand;
 use Illuminate\Foundation\Testing\RefreshDatabase;

@@ -16,9 +16,9 @@ return [
 
     /*
     * The classname of the model to be used. The class should equal or extend
-    * \Ankurk91\SesWebhooks\SesWebhookCall.
+    * \Ankurk91\SesWebhooks\Model\SesWebhookCall.
     */
-    'model' => \Ankurk91\SesWebhooks\SesWebhookCall::class,
+    'model' => \Ankurk91\SesWebhooks\Model\SesWebhookCall::class,
 
     /**
      * This class determines if the incoming webhook call should be stored and processed.

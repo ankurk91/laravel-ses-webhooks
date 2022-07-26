@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Ankurk91\SesWebhooks;
+namespace Ankurk91\SesWebhooks\Jobs;
 
 use Ankurk91\SesWebhooks\Exception\WebhookFailed;
 use Illuminate\Support\Arr;
@@ -33,7 +33,8 @@ class ProcessSesWebhookJob extends ProcessWebhookJob
         }
 
         if (!class_exists($jobClass)) {
-            throw WebhookFailed::jobClassDoesNotExist($jobClass);
+            $this->fail(WebhookFailed::jobClassDoesNotExist($jobClass));
+            return;
         }
 
         dispatch(new $jobClass($this->webhookCall));

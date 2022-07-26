@@ -22,7 +22,8 @@ class SesWebhooksServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($this->getConfigPath(), 'ses-webhooks');
 
         Route::macro('sesWebhooks', function (string $url) {
-            return Route::post($url, '\Ankurk91\SesWebhooks\SesWebhooksController');
+            return Route::post($url, '\Ankurk91\SesWebhooks\Http\Controllers\SesWebhooksController')
+                ->name('sesWebhooks');
         });
     }
 

@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Ankurk91\SesWebhooks;
+namespace Ankurk91\SesWebhooks\Http\Controllers;
 
+use Ankurk91\SesWebhooks\SesWebhookConfig;
 use Illuminate\Http\Request;
 use Spatie\WebhookClient\WebhookProcessor;
 

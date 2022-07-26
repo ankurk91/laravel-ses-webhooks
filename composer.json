@@ -20,7 +20,7 @@
   "require": {
     "php": "^8.0",
     "ext-openssl": "*",
-    "aws/aws-php-sns-message-validator": "^1.6",
+    "aws/aws-php-sns-message-validator": "^1.7",
     "guzzlehttp/guzzle": "^7.3",
     "illuminate/http": "^8.50 || ^9.3",
     "illuminate/support": "^8.50 || ^9.3",
