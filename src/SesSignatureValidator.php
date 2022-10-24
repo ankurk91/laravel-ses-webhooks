@@ -41,25 +41,21 @@ class SesSignatureValidator implements SignatureValidator
 
     /**
      * Use Guzzle HTTP Client instead of file_get_contents()
-     *
-     * @return callable
      */
     protected function makeCertClient(): callable
     {
         return function (string $url): string {
-            return Http::timeout(30)->get($url)->body();
+            return Http::timeout(15)->get($url)->body();
         };
     }
 
     /**
      * Sends a GET request to confirmation URL.
      *
-     * @param Message $message
-     * @return void
      * @throws RequestException
      */
     protected function confirmSubscription(Message $message): void
     {
-        Http::timeout(30)->get($message['SubscribeURL'])->throw();
+        Http::timeout(15)->get($message['SubscribeURL'])->throw();
     }
 }
