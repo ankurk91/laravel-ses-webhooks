@@ -1,7 +1,7 @@
 # Laravel SES Webhooks Client
 
 [![Packagist](https://badgen.net/packagist/v/ankurk91/laravel-ses-webhooks)](https://packagist.org/packages/ankurk91/laravel-ses-webhooks)
-[![GitHub-tag](https://badgen.net/github/tag/ankurk91/laravel-ses-webhooks)](https://github.com/ankurk91/laravel-ses-webhooks/releases)
+[![GitHub-tag](https://badgen.net/github/tag/ankurk91/laravel-ses-webhooks)](https://github.com/ankurk91/laravel-ses-webhooks/tags)
 [![License](https://badgen.net/packagist/license/ankurk91/laravel-ses-webhooks)](LICENSE.txt)
 [![Downloads](https://badgen.net/packagist/dt/ankurk91/laravel-ses-webhooks)](https://packagist.org/packages/ankurk91/laravel-ses-webhooks/stats)
 [![GH-Actions](https://github.com/ankurk91/laravel-ses-webhooks/workflows/tests/badge.svg)](https://github.com/ankurk91/laravel-ses-webhooks/actions)
