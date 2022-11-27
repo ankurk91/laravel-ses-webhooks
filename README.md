@@ -57,7 +57,7 @@ protected $except = [
 * Assuming that you have SES service up and running in your app already
 * Create a [configuration set](https://docs.aws.amazon.com/ses/latest/dg/using-configuration-sets.html)
 * Choose [SNS](https://docs.aws.amazon.com/ses/latest/dg/configure-sns-notifications.html) as event destination
-* Choose HTTP as delivery method for that newly created SNS topic
+* Choose `HTTP` as delivery method for that newly created SNS topic
 * Specify the webhook URL as `${APP_URL}/webhooks/ses`
 * This package should auto confirm the subscription
 * You need to specify the configuration set name in your `config/services.php`
@@ -92,7 +92,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Arr;
 use Spatie\WebhookClient\Models\WebhookCall;
 
-class BounceHandler implements ShouldQueue
+class BounceHandlerJob implements ShouldQueue
 {
     use SerializesModels;
 
@@ -122,7 +122,7 @@ key should be lowercase and spaces should be replaced by `_`. The value should b
 
 return [
      'jobs' => [
-          'bounce' => \App\Jobs\Webhooks\SES\BounceHandler::class,
+          'bounce' => \App\Jobs\Webhooks\SES\BounceHandlerJob::class,
      ],
 ];
 ```

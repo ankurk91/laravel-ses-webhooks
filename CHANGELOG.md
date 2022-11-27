@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/3.0.0...3.1.0)
+
+* Drop support for Laravel 8
+* Drop support for php 8.0
+* Test on php 8.2
+
 ## [3.0.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/2.0.0...3.0.0)
 
 * :warning: Changed namespace for various classes
