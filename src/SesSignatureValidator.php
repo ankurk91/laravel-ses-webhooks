@@ -45,17 +45,17 @@ class SesSignatureValidator implements SignatureValidator
     protected function makeCertClient(): callable
     {
         return function (string $url): string {
-            return Http::get($url)->body();
+            return Http::timeout(15)->get($url)->body();
         };
     }
 
     /**
-     * Sends a GET request to confirmation URL.
+     * Send a request to confirmation URL.
      *
      * @throws RequestException
      */
     protected function confirmSubscription(Message $message): void
     {
-        Http::get($message['SubscribeURL'])->throw();
+        Http::timeout(15)->get($message['SubscribeURL'])->throw();
     }
 }
