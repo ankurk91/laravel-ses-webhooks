@@ -9,6 +9,6 @@ class WebhookFailed extends Exception
 {
     public static function jobClassDoesNotExist(string $jobClass): self
     {
-        return new static("Could not process webhook, the configured class `$jobClass` not found.");
+        return new static("Could not process ses webhook, the configured class `$jobClass` not found.");
     }
 }

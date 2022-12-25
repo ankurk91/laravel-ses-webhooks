@@ -17,6 +17,7 @@ class SesWebhookProfile implements WebhookProfile
 
         return SesWebhookCall::query()
             ->where('name', $config->name)
-            ->where('payload->MessageId', $payload['MessageId'])->doesntExist();
+            ->where('payload->MessageId', $payload['MessageId'])
+            ->doesntExist();
     }
 }

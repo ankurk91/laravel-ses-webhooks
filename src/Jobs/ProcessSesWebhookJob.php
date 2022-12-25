@@ -42,7 +42,6 @@ class ProcessSesWebhookJob extends ProcessWebhookJob
 
     protected function createEventKey(string $eventType): string
     {
-        $key = Str::lower($eventType);
-        return Str::replace(' ', '_', $key);
+        return Str::replace(' ', '_', Str::lower($eventType));
     }
 }
