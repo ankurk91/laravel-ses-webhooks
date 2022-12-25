@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.1.2](https://github.com/ankurk91/laravel-ses-webhooks/compare/3.1.1...3.1.2)
+
+* Fix compatibility with `spatie/laravel-webhook-client`, see
+  this [PR](https://github.com/spatie/laravel-webhook-client/pull/166)
+
 ## [3.1.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/3.0.0...3.1.0)
 
 * Drop support for Laravel 8

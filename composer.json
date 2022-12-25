@@ -1,12 +1,13 @@
 {
   "name": "ankurk91/laravel-ses-webhooks",
-  "description": "Handle AWS SES webhooks in Laravel",
+  "description": "Handle AWS SES webhooks in Laravel php framework",
   "keywords": [
     "laravel",
     "sns",
     "ses",
     "aws",
-    "webhook"
+    "webhook",
+    "bounce"
   ],
   "homepage": "https://github.com/ankurk91/laravel-ses-webhooks",
   "license": "MIT",
