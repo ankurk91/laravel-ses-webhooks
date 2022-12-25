@@ -31,8 +31,4 @@ return [
      */
     'verify_signature' => (bool) env('SES_SIGNATURE_VERIFY', true),
 
-    /**
-     * Prune records older than given number of hours
-     */
-    'prune_older_than_hours' => 30 * 24,
 ];

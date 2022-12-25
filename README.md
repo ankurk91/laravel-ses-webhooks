@@ -168,36 +168,9 @@ class ComplaintListener implements ShouldQueue
 }
 ```
 
-## Pruning old webhooks (opt-in)
+## Pruning old webhooks (opt-in but recommended)
 
-You can schedule the artisan command to remove old webhooks from database like:
-
-```php
-<?php
-namespace App\Console;
-
-use Ankurk91\SesWebhooks\Model\SesWebhookCall;
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Database\Console\PruneCommand;
-
-class Kernel extends ConsoleKernel
-{
-    protected function schedule(Schedule $schedule)
-    {
-        $schedule->command(PruneCommand::class, [
-            '--model' => [SesWebhookCall::class]
-        ])
-        ->onOneServer()
-        ->daily()
-        ->description('Prune webhook_calls for SES.');
-    }
-    
-    //...
-}
-```
-
-By default, the package is configured to keep past `30` days records only. You can adjust the duration
-in `config/ses-webhooks.php` file.
+You can follow the instructions [here](https://github.com/spatie/laravel-webhook-client#deleting-models)
 
 ### Changelog
 
