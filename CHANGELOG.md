@@ -1,5 +1,10 @@
 # Changelog
 
+## [4.0.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/3.1.2...4.0.0)
+
+* Model prune feature has been removed from `SesWebhookCall` class
+* Follow the [upgrade guide](./UPGRADING.md) to restore this feature
+
 ## [3.1.2](https://github.com/ankurk91/laravel-ses-webhooks/compare/3.1.1...3.1.2)
 
 * Fix compatibility with `spatie/laravel-webhook-client`, see
