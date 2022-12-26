@@ -8,8 +8,8 @@
 
 **Tell about your platform**
 
-* Laravel version : 8.x|9.x
-* php version : 8.x
+* Laravel version : 9.x
+* php version : 8.1
 
 **Current behavior**
 <!-- Describe how the bug manifests. -->

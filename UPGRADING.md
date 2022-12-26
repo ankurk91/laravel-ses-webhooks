@@ -1,5 +1,33 @@
 # Upgrading
 
+## From 3.x to 4.x
+
+Model prune feature has been removed from `SesWebhookCall` model class.
+To restore this feature follow these steps:
+
+* Create a file at `config/webhook-client.php` in your project with this content:
+
+```php
+return [   
+    'delete_after_days' => 30,
+];
+```
+
+* Then update your `app/Console/Kernel.php` file like:
+
+```diff
+- use Ankurk91\SesWebhooks\Model\SesWebhookCall;
++ use Spatie\WebhookClient\Models\WebhookCall;
+
+$schedule->command(PruneCommand::class, [
+-            '--model' => [SesWebhookCall::class]
++            '--model' => [WebhookCall::class]
+        ])
+        ->onOneServer()
+        ->daily()
+        ->description('Prune webhook_calls.');
+```
+
 ## From 2.x to 3.x
 
 Update your class imports as follows:
