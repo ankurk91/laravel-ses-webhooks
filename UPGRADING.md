@@ -8,6 +8,8 @@ To restore this feature follow these steps:
 * Create a file at `config/webhook-client.php` in your project with this content:
 
 ```php
+<?php
+
 return [   
     'delete_after_days' => 30,
 ];
