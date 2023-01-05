@@ -52,6 +52,8 @@ protected $except = [
 ];
 ```
 
+It is recommended to set up a queue worker to precess the incoming webhooks.
+
 ### Prepare your AWS console for SES webhooks
 
 * Assuming that you have SES service up and running in your app already
@@ -79,7 +81,7 @@ There are 2 ways to handle incoming webhooks via this package.
 
 ### 1 - Handling webhook requests using jobs
 
-If you want to do something when a specific event type comes in; you can define a job for that event. 
+If you want to do something when a specific event type comes in; you can define a job for that event.
 Here's an example of such job:
 
 ```php
@@ -170,7 +172,24 @@ class ComplaintListener implements ShouldQueue
 
 ## Pruning old webhooks (opt-in but recommended)
 
-You can follow the instructions [here](https://github.com/spatie/laravel-webhook-client#deleting-models)
+Update your `app/Console/Kernel.php` file like:
+
+```php
+use Spatie\WebhookClient\Models\WebhookCall;
+
+$schedule->command(PruneCommand::class, [
+            '--model' => [WebhookCall::class]
+        ])
+        ->onOneServer()
+        ->daily()
+        ->description('Prune webhook_calls.');
+```
+
+This will delete records older than 30 days, you can modify this duration by publishing this config file.
+
+```bash
+php artisan vendor:publish --provider="Spatie\WebhookClient\WebhookClientServiceProvider" --tag="webhook-client-config"
+```
 
 ### Changelog
 

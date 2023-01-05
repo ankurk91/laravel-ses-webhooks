@@ -25,7 +25,7 @@
     "guzzlehttp/guzzle": "^7.5",
     "illuminate/http": "^9.34",
     "illuminate/support": "^9.34",
-    "spatie/laravel-webhook-client": "^3.1.4"
+    "spatie/laravel-webhook-client": "^3.1.6"
   },
   "require-dev": {
     "orchestra/testbench": "^7.12",
