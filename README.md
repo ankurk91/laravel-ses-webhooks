@@ -37,7 +37,7 @@ After the migration has been published you can create the `webhook_calls` table 
 php artisan migrate
 ```
 
-Next, for routing, add this line to your `routes/web.php`
+Next, for routing, add this route (guest) to your `routes/web.php`
 
 ```bash
 Route::sesWebhooks('/webhooks/ses');
@@ -98,7 +98,7 @@ class BounceHandlerJob implements ShouldQueue
 {
     use SerializesModels;
 
-    public function __construct(public WebhookCall $webhookCall)
+    public function __construct(protected WebhookCall $webhookCall)
     {
         //
     }
