@@ -23,12 +23,12 @@
     "ext-openssl": "*",
     "aws/aws-php-sns-message-validator": "^1.8",
     "guzzlehttp/guzzle": "^7.5",
-    "illuminate/http": "^9.34",
-    "illuminate/support": "^9.34",
-    "spatie/laravel-webhook-client": "^3.1.6"
+    "illuminate/http": "^9.34 || ^10.0",
+    "illuminate/support": "^9.34 || ^10.0",
+    "spatie/laravel-webhook-client": "^3.1.7"
   },
   "require-dev": {
-    "orchestra/testbench": "^7.12",
+    "orchestra/testbench": "^7.12 || ^8.0",
     "phpunit/phpunit": "^9.5"
   },
   "autoload": {
