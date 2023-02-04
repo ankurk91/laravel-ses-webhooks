@@ -1,4 +1,4 @@
-# Laravel SES Webhooks Client
+# SES Webhooks Client for Laravel
 
 [![Packagist](https://badgen.net/packagist/v/ankurk91/laravel-ses-webhooks)](https://packagist.org/packages/ankurk91/laravel-ses-webhooks)
 [![GitHub-tag](https://badgen.net/github/tag/ankurk91/laravel-ses-webhooks)](https://github.com/ankurk91/laravel-ses-webhooks/tags)
