@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.2.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/4.1.0...4.2.0)
+
+* Report failed signature exception in debug mode
+* Strict types in config file
+
+## [4.1.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/4.0.0...4.1.0)
+
+* Add support for Laravel 10.x
+
 ## [4.0.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/3.1.2...4.0.0)
 
 * Model prune feature has been removed from `SesWebhookCall` class
