@@ -35,6 +35,8 @@ class SesSignatureValidator implements SignatureValidator
         } catch (RequestException $e) {
             throw $e;
         } catch (Throwable $e) {
+            report_if(app()->hasDebugModeEnabled(), $e);
+
             return false;
         }
     }

@@ -12,8 +12,8 @@ use Spatie\WebhookClient\WebhookConfig;
 
 class SesSignatureValidatorTest extends TestCase
 {
-    private WebhookConfig $config;
-    private SesSignatureValidator $validator;
+    private readonly WebhookConfig $config;
+    private readonly SesSignatureValidator $validator;
 
     public function setUp(): void
     {

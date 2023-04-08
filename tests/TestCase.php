@@ -25,7 +25,7 @@ abstract class TestCase extends OrchestraTestCase
         ];
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         config()->set('app.debug', false);
 
@@ -37,7 +37,7 @@ abstract class TestCase extends OrchestraTestCase
         ]);
     }
 
-    protected function setUpDatabase()
+    protected function setUpDatabase(): void
     {
         $migration = include __DIR__ . '/../vendor/spatie/laravel-webhook-client/database/migrations/create_webhook_calls_table.php.stub';
 

@@ -1,4 +1,4 @@
-# SES Webhooks Client for Laravel
+# AWS SES Webhooks Client for Laravel
 
 [![Packagist](https://badgen.net/packagist/v/ankurk91/laravel-ses-webhooks)](https://packagist.org/packages/ankurk91/laravel-ses-webhooks)
 [![GitHub-tag](https://badgen.net/github/tag/ankurk91/laravel-ses-webhooks)](https://github.com/ankurk91/laravel-ses-webhooks/tags)
@@ -175,6 +175,7 @@ class ComplaintListener implements ShouldQueue
 Update your `app/Console/Kernel.php` file like:
 
 ```php
+use Illuminate\Database\Console\PruneCommand;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 $schedule->command(PruneCommand::class, [
@@ -185,7 +186,7 @@ $schedule->command(PruneCommand::class, [
         ->description('Prune webhook_calls.');
 ```
 
-This will delete records older than 30 days, you can modify this duration by publishing this config file.
+This will delete records older than `30` days, you can modify this duration by publishing this config file.
 
 ```bash
 php artisan vendor:publish --provider="Spatie\WebhookClient\WebhookClientServiceProvider" --tag="webhook-client-config"

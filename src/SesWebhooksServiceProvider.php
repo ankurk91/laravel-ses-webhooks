@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 class SesWebhooksServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -17,7 +17,7 @@ class SesWebhooksServiceProvider extends ServiceProvider
         }
     }
 
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom($this->getConfigPath(), 'ses-webhooks');
 

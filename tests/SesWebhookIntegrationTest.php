@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Ankurk91\SesWebhooks\Tests;
 
 use Ankurk91\SesWebhooks\Exception\WebhookFailed;
-use Ankurk91\SesWebhooks\Jobs\ProcessSesWebhookJob;
 use Ankurk91\SesWebhooks\Tests\Factory\SNSMessageFactory;
 use Ankurk91\SesWebhooks\Tests\Stubs\TestEventJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -80,7 +79,7 @@ class SesWebhookIntegrationTest extends TestCase
         });
     }
 
-    public function test_it_process_webhook_only_once()
+    public function test_it_process_same_webhook_only_once()
     {
         $messageFactory = new SNSMessageFactory();
         $payload = $messageFactory->getNotificationPayload([

@@ -10,7 +10,7 @@ use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 
 class ProcessSesWebhookJob extends ProcessWebhookJob
 {
-    public function handle()
+    public function handle(): void
     {
         if ($this->webhookCall->payload['Type'] !== 'Notification') {
             return;
@@ -42,6 +42,6 @@ class ProcessSesWebhookJob extends ProcessWebhookJob
 
     protected function createEventKey(string $eventType): string
     {
-        return Str::replace(' ', '_', Str::lower($eventType));
+        return Str::of($eventType)->lower()->replace(' ', '_')->value();
     }
 }

@@ -20,9 +20,6 @@ class SNSMessageFactory
 
     /**
      * Get the signature for the message.
-     *
-     * @param string $stringToSign
-     * @return string
      */
     protected function getSignature(string $stringToSign): string
     {
@@ -46,9 +43,6 @@ class SNSMessageFactory
 
     /**
      * Get an example subscription payload for testing.
-     *
-     * @param array $custom
-     * @return array
      */
     public function getSubscriptionConfirmationPayload(array $custom = []): array
     {
@@ -74,10 +68,6 @@ class SNSMessageFactory
 
     /**
      * Get an example notification payload for testing.
-     *
-     * @param array $payload
-     * @param array $custom
-     * @return array
      */
     public function getNotificationPayload(array $payload = [], array $custom = []): array
     {
