@@ -16,29 +16,26 @@ class SNSMessageFactory
     /**
      * The certificate to sign the request for SNS.
      */
-    protected ?string $snsCertificate;
+    protected ?string $certificate;
 
     /**
      * Get the signature for the message.
      */
     protected function getSignature(string $stringToSign): string
     {
-        $snsPrivateKey = openssl_pkey_new();
+        $privateKey = openssl_pkey_new();
 
-        $csr = openssl_csr_new([], $snsPrivateKey);
-
-        $x509 = openssl_csr_sign($csr, null, $snsPrivateKey, 1);
-
-        openssl_x509_export($x509, $this->snsCertificate);
-
-        openssl_sign($stringToSign, $signature, $snsPrivateKey);
+        $csr = openssl_csr_new([], $privateKey);
+        $x509 = openssl_csr_sign($csr, null, $privateKey, 1);
+        openssl_x509_export($x509, $this->certificate);
+        openssl_sign($stringToSign, $signature, $privateKey);
 
         return base64_encode($signature);
     }
 
     public function getCertificate(): ?string
     {
-        return $this->snsCertificate;
+        return $this->certificate;
     }
 
     /**
