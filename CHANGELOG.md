@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.2.1](https://github.com/ankurk91/laravel-ses-webhooks/compare/4.2.0...4.2.1)
+
+* Prevent one extra SQL query during insertion
+
 ## [4.2.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/4.1.0...4.2.0)
 
 * Report failed signature exception in debug mode
