@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.3.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/4.2.1...4.3.0)
+
+* Allow Laravel 11
+
 ## [4.2.1](https://github.com/ankurk91/laravel-ses-webhooks/compare/4.2.0...4.2.1)
 
 * Prevent one extra SQL query during insertion
