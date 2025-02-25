@@ -3,13 +3,26 @@ declare(strict_types=1);
 
 namespace Ankurk91\SesWebhooks\Tests;
 
+use Ankurk91\SesWebhooks\Http\Controllers\SesWebhooksController;
+use Ankurk91\SesWebhooks\Jobs\ProcessSesWebhookJob;
+use Ankurk91\SesWebhooks\Model\SesWebhookCall;
 use Ankurk91\SesWebhooks\SesSignatureValidator;
 use Ankurk91\SesWebhooks\SesWebhookConfig;
+use Ankurk91\SesWebhooks\SesWebhookProfile;
+use Ankurk91\SesWebhooks\SesWebhooksServiceProvider;
 use Ankurk91\SesWebhooks\Tests\Factory\SNSMessageFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Spatie\WebhookClient\WebhookConfig;
 
+#[CoversClass(SesWebhooksController::class)]
+#[CoversClass(ProcessSesWebhookJob::class)]
+#[CoversClass(SesWebhookCall::class)]
+#[CoversClass(SesSignatureValidator::class)]
+#[CoversClass(SesWebhookConfig::class)]
+#[CoversClass(SesWebhookProfile::class)]
+#[CoversClass(SesWebhooksServiceProvider::class)]
 class SesSignatureValidatorTest extends TestCase
 {
     private readonly WebhookConfig $config;

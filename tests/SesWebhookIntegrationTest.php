@@ -4,14 +4,30 @@ declare(strict_types=1);
 namespace Ankurk91\SesWebhooks\Tests;
 
 use Ankurk91\SesWebhooks\Exception\WebhookFailed;
+use Ankurk91\SesWebhooks\Http\Controllers\SesWebhooksController;
+use Ankurk91\SesWebhooks\Jobs\ProcessSesWebhookJob;
+use Ankurk91\SesWebhooks\Model\SesWebhookCall;
+use Ankurk91\SesWebhooks\SesSignatureValidator;
+use Ankurk91\SesWebhooks\SesWebhookConfig;
+use Ankurk91\SesWebhooks\SesWebhookProfile;
+use Ankurk91\SesWebhooks\SesWebhooksServiceProvider;
 use Ankurk91\SesWebhooks\Tests\Factory\SNSMessageFactory;
 use Ankurk91\SesWebhooks\Tests\Stubs\TestEventJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Spatie\WebhookClient\Models\WebhookCall;
 
+#[CoversClass(SesWebhooksController::class)]
+#[CoversClass(ProcessSesWebhookJob::class)]
+#[CoversClass(SesWebhookCall::class)]
+#[CoversClass(SesSignatureValidator::class)]
+#[CoversClass(SesWebhookConfig::class)]
+#[CoversClass(SesWebhookProfile::class)]
+#[CoversClass(SesWebhooksServiceProvider::class)]
+#[CoversClass(WebhookFailed::class)]
 class SesWebhookIntegrationTest extends TestCase
 {
     use RefreshDatabase;

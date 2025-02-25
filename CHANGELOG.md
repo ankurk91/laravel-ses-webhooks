@@ -1,5 +1,10 @@
 # Changelog
 
+## [4.4.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/4.3.0...4.4.0)
+
+* Allow Laravel 12
+* Drop Laravel 10
+
 ## [4.3.0](https://github.com/ankurk91/laravel-ses-webhooks/compare/4.2.1...4.3.0)
 
 * Allow Laravel 11
